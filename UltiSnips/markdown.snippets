@@ -38,6 +38,40 @@ snippet img "Image"
 ![${1}](${2})
 endsnippet
 
+snippet hig "Syntax Highlighting"
+`${1}`
+endsnippet
+
+snippet cod "CodeBlock"
+```
+${1}
+```
+endsnippet
+
+snippet blq "Blockquotes"
+${1}:
+>${2}
+endsnippet
+
+snippet defl "Definition List"
+${1}
+: ${2}
+endsnippet
+
+snippet strh "Strikethrough"
+~${1}~
+endsnippet
+
+snippet tal "Task List"
+- [${1:X}] ${2}
+endsnippet
+
+snippet tab "Table"
+| ${1:Header} | ${2:Header} |
+| ----------- | ----------- |
+| ${3:cell} | ${4:cell} |
+endsnippet
+
 snippet new "blog new post"
 ---
 layout	: posts
