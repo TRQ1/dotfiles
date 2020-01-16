@@ -1,0 +1,55 @@
+snippet hnbsp "&nbsp; "
+&nbsp;
+endsnippet
+
+snippet h1 "Hading 1"
+#${1}
+endsnippet
+
+snippet h2 "Hading 2"
+##${1}
+endsnippet
+
+snippet h3 "Hading 3"
+###${1}
+endsnippet
+
+snippet h4 "Hading 4"
+####${1}
+endsnippet
+
+snippet bol "Bold"
+**${1}**
+endsnippet
+
+snippet lisu "Unordered Lists"
+* ${1}
+endsnippet
+
+snippet liso "Ordered Lists"
+1. ${1}
+endsnippet
+
+snippet lin "Links"
+[${1}](${2})
+endsnippet
+
+snippet img "Image"
+![${1}](${2})
+endsnippet
+
+snippet new "blog new post"
+---
+layout	: posts
+title	: ${1}
+summary	: ${2}
+data	: `date '+%Y-%m-%d %H:%M:%S'` +0900
+updated	: `date '+%Y-%m-%d %H:%M:%S'` +0900
+tag	: ${3}
+toc	: true
+comment	: true
+public	: true
+---
+* TOC
+{:toc}
+endsnippet
