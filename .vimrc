@@ -17,6 +17,7 @@ Plug 'vim-airline/vim-airline'
 Plug 'milkypostman/vim-togglelist'
 Plug 'AndrewRadev/splitjoin.vim'
 Plug 'mhinz/vim-startify'
+Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' } " fzf 사용시 꼭 설치하고 ~/.fzf 에 들어가서 ./install --all 하자
 Plug 'junegunn/fzf.vim'
 
 " Initialize plugin system
@@ -37,7 +38,7 @@ set mouse=a
 " Display status bar
 set laststatus=2
 
-" ultisnips 설정
+" ultisnips setting
 let g:UltiSnipsExpandTrigger = "<tab>"
 let g:UltiSnipsJumpForwardTrigger = "<tab>"
 let g:UltiSnipsJumpBackwardTrigger = "<s-tab>"
@@ -50,6 +51,7 @@ let g:airline#extensions#tabline#left_sep = ' '
 let g:airline#extensions#tabline#left_alt_sep = '|'
 let g:airline#extensions#tabline#enabled = 1
 
+" coc setting form https://johngrib.github.io/
 inoremap <silent><expr> <TAB>
       \ pumvisible() ? coc#_select_confirm() :
       \ coc#expandableOrJumpable() ? "\<C-r>=coc#rpc#request('doKeymap', ['snippets-expand-jump',''])\<CR>" :
@@ -61,13 +63,14 @@ function! s:check_back_space() abort
   return !col || getline('.')[col - 1]  =~# '\s'
 endfunction
 
+" coc default setting
 let g:coc_node_path = $HOME . "/.nvm/versions/node/v12.11.1/bin/node"
 let g:coc_snippet_next = "<tab>"
 
 " vim-go setting
 set updatetime=300
 
-" 저장할 때 자동으로 formatting 및 import
+" 저장할 때 자동으로 formatting 및 import from https://johngrib.github.io/
 let g:go_fmt_command = "goimports"
 let g:go_list_type = "quickfix"
 let g:go_addtags_transform = "camelcase"
@@ -112,3 +115,41 @@ function! LastModified()
     endif
 endfun
 autocmd BufWritePre *.md call LastModified()
+
+
+" fzf from https://johngrib.github.io/
+let g:fzf_launcher = "In_a_new_term_function %s"
+imap <C-x><C-l> <plug>(fzf-complete-line)
+
+nnoremap <f1>f :Files<CR>
+nnoremap <f1>g :GitFiles<CR>
+nnoremap <f1> <nop>
+nnoremap <f1><f1> :Files<CR>
+nnoremap <f1>a :Ag<CR>
+nnoremap <f1>l :Lines<CR>
+nnoremap <f1>` :Marks<CR>
+nnoremap <f1>' :Marks<CR>
+" nnoremap <f1>o :Locate getcwd()
+nnoremap <f1>h :History<CR>
+nnoremap <f1>c :History:<CR>
+nnoremap <f1>/ :History/<CR>
+nnoremap <f1>t :Tags ^<CR>
+nnoremap <f1><f2> :Buffers<CR>
+nnoremap <f3> :execute ":Tags " . expand('<cword>')<CR>
+
+" nnoremap <f1>d :call fzf#vim#tags('^', {'options': '--exact --select-1 --exit-0 +i'})<CR>
+nnoremap <f1>u call fzf#vim#ag('', {'options': '--select-2'})
+
+" gem install coderay
+" let g:fzf_files_options = '--preview "(coderay {} || cat {}) 2> /dev/null | head -' .&lines.'"'
+command! -bang -nargs=? -complete=dir Files
+            \ call fzf#vim#files(<q-args>, fzf#vim#with_preview(), <bang>0)
+
+function! FzfOmniFiles()
+    let is_git = system('git status')
+    if v:shell_error
+        :Files
+    else
+        :GitFiles
+    endif
+endfunc
