@@ -31,3 +31,22 @@ if ${1} {
 	${2}
 }
 endsnippet
+
+snippet cons "const( ... )"
+const(
+	${1:variable}	${2:type} = ${3:value}
+)
+endsnippet
+
+snippet conc "const( Sundy	= 0 ... )"
+const(
+	${1:variable}		= ${2:value}
+	${3:variable}		= ${4:value}
+)
+endsnippet
+
+snippet iota  "Description"
+const(
+	${1:variable}		= iota
+)
+endsnippet
