@@ -56,3 +56,11 @@ type ${1} struct {
 	${2:string}	${3:type}
 }
 endsnippet
+
+snippet test "func TEST(t *testing.T) { t.Run() { }) }" 
+func ${1:TEST_NAME}(t *testing.T) {
+	t.Run("${2:message}, func(t *testing.T) {
+	})
+}
+
+endsnippet
