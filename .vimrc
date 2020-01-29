@@ -116,6 +116,8 @@ function! LastModified()
 endfun
 autocmd BufWritePre *.md call LastModified()
 
+" git commit 메세지 글 자수를 제한하라
+autocmd FileType gitcommit setlocal textwidth=50
 
 " fzf from https://johngrib.github.io/
 let g:fzf_launcher = "In_a_new_term_function %s"
