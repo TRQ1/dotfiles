@@ -18,3 +18,8 @@ git log --follow <file>
 
 # commit 정보 확인
 git show 
+
+
+# git repository migration
+git clone --mirror <As-is Repository> <Diretory>
+git push <To-be Repository> --all
