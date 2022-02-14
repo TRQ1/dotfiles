@@ -23,3 +23,6 @@ git show
 # git repository migration
 git clone --mirror <As-is Repository> <Diretory>
 git push <To-be Repository> --all
+
+# git 원격 리포지토리에서 PR 정보 가져오기
+git pull upstream refs/pull/<PR NUMBER>/head:<Branch Name>
